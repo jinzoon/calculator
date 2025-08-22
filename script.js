@@ -2,6 +2,7 @@ let firstNum;
 let secondNum;
 let operator;
 let currentNum;
+let isCurrentDecimal=false;
 
 const calculator__display = document.querySelector(".calculator__display");
 const button__digit = document.querySelectorAll(".button__digit");
@@ -14,9 +15,18 @@ button__digit.forEach(button => {
 button__clear.addEventListener("click", () => 
     clearAll());
 
-function addToDisplay(digit, display, currentNum){
+
+function addToDisplay(digit, display){
+
+    if(digit == "." && isCurrentDecimal == true){
+       return;
+    }
+    else if (digit == "." && isCurrentDecimal == false){
+        isCurrentDecimal = true;
+    }
     display.textContent += digit;
     currentNum = Number(calculator__display.textContent);
+    
 }
 
 
@@ -27,6 +37,8 @@ function clearAll(){
     operator = undefined;
     currentNum = undefined
     calculator__display.textContent = "";
+    isCurrentDecimal = false;
+
 }
 
 function operate(operator, firstNum, secondNum){
