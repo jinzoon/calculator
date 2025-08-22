@@ -2,6 +2,18 @@ let firstNum;
 let secondNum;
 let operator;
 
+const calculator__display = document.querySelector(".calculator__display");
+const button__digit = document.querySelectorAll(".button__digit");
+
+button__digit.forEach(button => {
+      button.addEventListener("click", () => addToDisplay(button.textContent, calculator__display));
+});
+
+function addToDisplay(digit, display){
+    display.textContent += digit;
+}
+
+
 function operate(operator, firstNum, secondNum){
     if (operator == "add"){
        return add(firstNum,secondNum);
