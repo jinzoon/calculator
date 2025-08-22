@@ -8,10 +8,11 @@ const button__digit = document.querySelectorAll(".button__digit");
 const button__clear = document.querySelector(".button__clear");
 
 button__digit.forEach(button => {
-      button.addEventListener("click", () => addToDisplay(button.textContent, calculator__display, currentNum));
-});
+    button.addEventListener("click", () => 
+        addToDisplay(button.textContent, calculator__display));});
 
-button__clear.addEventListener("click", () => clearAll(firstNum, secondNum, operator, currentNum, calculator__display));
+button__clear.addEventListener("click", () => 
+    clearAll());
 
 function addToDisplay(digit, display, currentNum){
     display.textContent += digit;
@@ -20,7 +21,7 @@ function addToDisplay(digit, display, currentNum){
 
 
 
-function clearAll(firstNum, secondNum, operator, currentNum, calculator__display){
+function clearAll(){
     firstNum = undefined;
     secondNum = undefined;
     operator = undefined;
