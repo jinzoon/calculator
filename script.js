@@ -1,17 +1,20 @@
 let firstNum;
 let secondNum;
 let operator;
+let currentNum;
 
 const calculator__display = document.querySelector(".calculator__display");
 const button__digit = document.querySelectorAll(".button__digit");
 
 button__digit.forEach(button => {
-      button.addEventListener("click", () => addToDisplay(button.textContent, calculator__display));
+      button.addEventListener("click", () => addToDisplay(button.textContent, calculator__display, currentNum));
 });
 
-function addToDisplay(digit, display){
+function addToDisplay(digit, display, currentNum){
     display.textContent += digit;
+    currentNum = Number(calculator__display.textContent);
 }
+
 
 
 function operate(operator, firstNum, secondNum){
