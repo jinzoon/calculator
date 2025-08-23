@@ -2,7 +2,7 @@ let firstNum;
 let secondNum;
 let operator;
 let currentNum;
-let isCurrentDecimal=false;
+
 
 let replaceCurrentDisplay = false;
 
@@ -40,7 +40,6 @@ button__posneg.addEventListener("click", () => {
 button__delete.addEventListener("click", () => { 
     if (currentNum !== undefined) {
     if (calculator__display.textContent.charAt(calculator__display.textContent.length-1) == "."){
-        isCurrentDecimal = false;
     }
        calculator__display.textContent = calculator__display.textContent.slice(0,-1);
        currentNum = Number(calculator__display.textContent);
@@ -64,7 +63,7 @@ function equalPressed(){
         replaceCurrentDisplay = true;
         secondNum = undefined;
         currentNum = undefined;
-        isCurrentDecimal=false;     
+
     }
 
 }
@@ -73,20 +72,14 @@ function equalPressed(){
 function addToDisplay(digit, display){
 
 if (replaceCurrentDisplay == false){
-    if(digit == "." && isCurrentDecimal == true){
+    if(digit == "." && calculator__display.textContent.includes(".") == true){
        return;
-    }
-    else if (digit == "." && isCurrentDecimal == false){
-        isCurrentDecimal = true;
     }
     display.textContent += digit;
     currentNum = Number(calculator__display.textContent);}
  else if (replaceCurrentDisplay == true) {
-    if(digit == "." && isCurrentDecimal == true){
+    if(digit == "." && calculator__display.textContent.includes(".") == true){
        return;
-    }
-    else if (digit == "." && isCurrentDecimal == false){
-        isCurrentDecimal = true;
     }
     display.textContent = digit;
     
@@ -103,7 +96,6 @@ function operatorPressed() {
         firstNum = currentNum;
         replaceCurrentDisplay = true;
         currentNum = undefined;
-        isCurrentDecimal=false;
     }
     else if (firstNum !== undefined && currentNum == undefined){
         return;
@@ -117,7 +109,7 @@ function operatorPressed() {
         replaceCurrentDisplay = true;
         secondNum = undefined;
         currentNum = undefined;
-        isCurrentDecimal=false;       
+      
     }
     
 }
@@ -129,7 +121,6 @@ function clearAll(){
     operator = undefined;
     currentNum = undefined
     calculator__display.textContent = "";
-    isCurrentDecimal = false;
 
 }
 
