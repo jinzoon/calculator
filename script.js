@@ -35,7 +35,7 @@ button__posneg.addEventListener("click", () => {
 if (calculator__display.textContent == "Can't divide by Zero"){ return;} 
     if (currentNum !== undefined) {
     currentNum = (currentNum*-1);
-    calculator__display.textContent = currentNum;}}
+    calculator__display.textContent = formatForDisplay(currentNum);}}
 );
 
 button__delete.addEventListener("click", () => {
@@ -46,12 +46,10 @@ if (calculator__display.textContent == "Can't divide by Zero"){ return;}
     }
        currentInput = currentInput.slice(0,-1);
        currentNum = Number(currentInput);
-       calculator__display.textContent = currentInput;
+       calculator__display.textContent = formatForDisplay(currentInput);
 if (currentInput.length == 0){
     currentNum == undefined;
-}       
-
- 
+    }       
     }}
 );
 
@@ -65,20 +63,24 @@ if (calculator__display.textContent == "Can't divide by Zero"){ return;}
         secondNum = currentNum;
         let holdingNum = operate(operator,firstNum,secondNum);
         
-        if (holdingNum.toString().length > 11) {
-            calculator__display.textContent = holdingNum.toExponential(7);
-        }
-        else {
-        calculator__display.textContent = holdingNum;}
+        calculator__display.textContent = formatForDisplay(holdingNum);}
         firstNum = undefined;
         replaceCurrentDisplay = true;
         secondNum = undefined;
         currentNum = undefined;
+    }
 
+
+
+function formatForDisplay(num) {
+    if (num.toString().length > 11) {
+        return num.toExponential(7)
+    }
+    else {
+        return num.toString();
     }
 
 }
-
 
 function addToDisplay(digit, display){
 if (calculator__display.textContent == "Can't divide by Zero"){ return;}
@@ -89,14 +91,14 @@ if (replaceCurrentDisplay == false){
     }
     currentInput += digit;
     currentNum = Number(currentInput);
-    display.textContent = currentInput;
+    display.textContent = formatForDisplay(currentInput);
 }
  else if (replaceCurrentDisplay == true) {
     if(digit == "." && currentInput.includes(".") == true){
        return;
     }
     currentInput = digit.toString();
-    display.textContent = currentInput;
+    display.textContent = formatForDisplay(currentInput);
     
     currentNum = Number(currentInput);
     replaceCurrentDisplay = false
@@ -122,18 +124,10 @@ function operatorPressed() {
         secondNum = currentNum;
         let holdingNum = operate(operator,firstNum,secondNum);
         firstNum = holdingNum;
-
-        if (firstNum.toString().length > 11) {
-            calculator__display.textContent = firstNum.toExponential(7);
-        }
-        else {
-        calculator__display.textContent = firstNum;}
+        calculator__display.textContent = formatForDisplay(firstNum);
         replaceCurrentDisplay = true;
         secondNum = undefined;
         currentNum = undefined;
-
-        
-      
     }
     
 }
