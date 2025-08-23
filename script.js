@@ -58,19 +58,23 @@ if (replaceCurrentDisplay == false){
 
 
 function operatorPressed() {
-     if (firstNum == undefined ){
+     if (firstNum == undefined && secondNum == undefined ){
         firstNum = currentNum;
         replaceCurrentDisplay = true;
+        currentNum = undefined;
     }
-    
-    else if (firstNum !== undefined ) {
+    else if (firstNum !== undefined && currentNum == undefined){
+        return;
+    }
+
+    else if (firstNum !== undefined && secondNum == undefined) {
         secondNum = currentNum;
         let holdingNum = operate(operator,firstNum,secondNum);
         firstNum = holdingNum;
         calculator__display.textContent = firstNum;
         replaceCurrentDisplay = true;
         secondNum = undefined;
-        
+        currentNum = undefined;     
     }
     
 }
