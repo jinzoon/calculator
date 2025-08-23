@@ -11,6 +11,7 @@ const calculator__display = document.querySelector(".calculator__display");
 const button__digit = document.querySelectorAll(".button__digit");
 const button__clear = document.querySelector(".button__clear");
 const button_operator =document.querySelectorAll(".button_operator");
+const button__equal = document.querySelector(".button__equal");
 
 button__digit.forEach(button => {
     button.addEventListener("click", () => 
@@ -26,7 +27,25 @@ button_operator.forEach(button => {
     button.addEventListener("click", () => 
         operator = button.textContent)});
 
+button__equal.addEventListener("click", () => equalPressed());
 
+
+function equalPressed(){
+    if (firstNum == undefined && currentNum == undefined){
+        return;
+    }
+    else if (firstNum !== undefined && currentNum !== undefined){
+        secondNum = currentNum;
+        let holdingNum = operate(operator,firstNum,secondNum);
+        calculator__display.textContent = holdingNum;
+        firstNum = undefined;
+        replaceCurrentDisplay = true;
+        secondNum = undefined;
+        currentNum = undefined;
+        isCurrentDecimal=false;     
+    }
+
+}
 
 
 function addToDisplay(digit, display){
