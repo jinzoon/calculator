@@ -62,6 +62,7 @@ function operatorPressed() {
         firstNum = currentNum;
         replaceCurrentDisplay = true;
         currentNum = undefined;
+        isCurrentDecimal=false;
     }
     else if (firstNum !== undefined && currentNum == undefined){
         return;
@@ -74,7 +75,8 @@ function operatorPressed() {
         calculator__display.textContent = firstNum;
         replaceCurrentDisplay = true;
         secondNum = undefined;
-        currentNum = undefined;     
+        currentNum = undefined;
+        isCurrentDecimal=false;       
     }
     
 }
