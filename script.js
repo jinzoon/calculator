@@ -31,13 +31,16 @@ button_operator.forEach(button => {
 
 button__equal.addEventListener("click", () => equalPressed());
 
-button__posneg.addEventListener("click", () => { 
+button__posneg.addEventListener("click", () => {
+if (calculator__display.textContent == "Can't divide by Zero"){ return;} 
     if (currentNum !== undefined) {
     currentNum = (currentNum*-1);
     calculator__display.textContent = currentNum;}}
 );
 
-button__delete.addEventListener("click", () => { 
+button__delete.addEventListener("click", () => {
+if (calculator__display.textContent == "Can't divide by Zero"){ return;}
+
     if (currentNum !== undefined) {
     if (calculator__display.textContent.charAt(calculator__display.textContent.length-1) == "."){
     }
@@ -52,6 +55,8 @@ if (calculator__display.textContent.length == 0){
 );
 
 function equalPressed(){
+if (calculator__display.textContent == "Can't divide by Zero"){ return;}
+
     if (firstNum == undefined && currentNum == undefined){
         return;
     }
@@ -70,6 +75,7 @@ function equalPressed(){
 
 
 function addToDisplay(digit, display){
+if (calculator__display.textContent == "Can't divide by Zero"){ return;}
 
 if (replaceCurrentDisplay == false){
     if(digit == "." && calculator__display.textContent.includes(".") == true){
@@ -92,7 +98,9 @@ if (replaceCurrentDisplay == false){
 
 
 function operatorPressed() {
-     if (firstNum == undefined && secondNum == undefined ){
+    if (calculator__display.textContent == "Can't divide by Zero"){ return;}
+
+    if (firstNum == undefined && secondNum == undefined ){
         firstNum = currentNum;
         replaceCurrentDisplay = true;
         currentNum = undefined;
@@ -141,6 +149,7 @@ function operate(operator, firstNum, secondNum){
         return null;
     }
 }
+
 
 
 function add(num1,num2) {
