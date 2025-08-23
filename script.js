@@ -122,7 +122,12 @@ function operatorPressed() {
         secondNum = currentNum;
         let holdingNum = operate(operator,firstNum,secondNum);
         firstNum = holdingNum;
-        calculator__display.textContent = firstNum;
+
+        if (firstNum.toString().length > 11) {
+            calculator__display.textContent = firstNum.toExponential(7);
+        }
+        else {
+        calculator__display.textContent = firstNum;}
         replaceCurrentDisplay = true;
         secondNum = undefined;
         currentNum = undefined;
@@ -178,7 +183,8 @@ function multiply(num1,num2) {
 
 function divide(num1,num2) {
     if (num2 === 0){
-        return "Can't divide by Zero"}
+        calculator__display.textContent = "Can't divide by Zero";
+        return }
     else {
        
     return (num1/num2);}
