@@ -12,6 +12,7 @@ const button__digit = document.querySelectorAll(".button__digit");
 const button__clear = document.querySelector(".button__clear");
 const button_operator =document.querySelectorAll(".button_operator");
 const button__equal = document.querySelector(".button__equal");
+const button__posneg = document.querySelector(".button__posneg");
 
 button__digit.forEach(button => {
     button.addEventListener("click", () => 
@@ -28,6 +29,13 @@ button_operator.forEach(button => {
         operator = button.textContent)});
 
 button__equal.addEventListener("click", () => equalPressed());
+
+button__posneg.addEventListener("click", () => { 
+    if (currentNum !== undefined) {
+    currentNum = (currentNum*-1);
+    calculator__display.textContent = currentNum;}}
+);
+
 
 
 function equalPressed(){
