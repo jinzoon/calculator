@@ -4,20 +4,34 @@ let operator;
 let currentNum;
 let isCurrentDecimal=false;
 
+let replaceCurrentDisplay = false;
+
+
 const calculator__display = document.querySelector(".calculator__display");
 const button__digit = document.querySelectorAll(".button__digit");
 const button__clear = document.querySelector(".button__clear");
+const button_operator =document.querySelectorAll(".button_operator");
 
 button__digit.forEach(button => {
     button.addEventListener("click", () => 
         addToDisplay(button.textContent, calculator__display));});
 
+button_operator.forEach(button => {
+    button.addEventListener("click", () => 
+        operatorPressed());});
+
 button__clear.addEventListener("click", () => 
     clearAll());
+button_operator.forEach(button => {
+    button.addEventListener("click", () => 
+        operator = button.textContent)});
+
+
 
 
 function addToDisplay(digit, display){
 
+if (replaceCurrentDisplay == false){
     if(digit == "." && isCurrentDecimal == true){
        return;
     }
@@ -25,10 +39,41 @@ function addToDisplay(digit, display){
         isCurrentDecimal = true;
     }
     display.textContent += digit;
+    currentNum = Number(calculator__display.textContent);}
+ else if (replaceCurrentDisplay == true) {
+    if(digit == "." && isCurrentDecimal == true){
+       return;
+    }
+    else if (digit == "." && isCurrentDecimal == false){
+        isCurrentDecimal = true;
+    }
+    display.textContent = digit;
+    
     currentNum = Number(calculator__display.textContent);
+    replaceCurrentDisplay = false
+    }
+
+}
+    
+
+
+function operatorPressed() {
+     if (firstNum == undefined ){
+        firstNum = currentNum;
+        replaceCurrentDisplay = true;
+    }
+    
+    else if (firstNum !== undefined ) {
+        secondNum = currentNum;
+        let holdingNum = operate(operator,firstNum,secondNum);
+        firstNum = holdingNum;
+        calculator__display.textContent = firstNum;
+        replaceCurrentDisplay = true;
+        secondNum = undefined;
+        
+    }
     
 }
-
 
 
 function clearAll(){
@@ -42,16 +87,16 @@ function clearAll(){
 }
 
 function operate(operator, firstNum, secondNum){
-    if (operator == "add"){
+    if (operator == "+"){
        return add(firstNum,secondNum);
     }
-    else if (operator == "sub") {
+    else if (operator == "-") {
         return subtract(firstNum,secondNum);
     }
-    else if (operator == "mult") {
+    else if (operator == "x") {
         return multiply(firstNum,secondNum);
     }
-    else if (operator == "div"){
+    else if (operator == "÷"){
         return divide(firstNum, secondNum);
     }
     else {
