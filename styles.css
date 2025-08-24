@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "lcdfont";
+  src: url("./fonts/DSEG14ClassicMini-Regular.woff2") format('woff2');
+}
+
 .display {
     height: 2.5rem;
     width: 7rem;
@@ -9,6 +14,7 @@
 }
 
 .display__operator {
+    font-family: lcdfont;
     font-size: .75rem;
     width: auto;
     height: 30%;
@@ -18,6 +24,7 @@
 }
 
 .display__number {
+    font-family: lcdfont;
     font-size: 1.25rem;
     width: auto;
     height: 70%;
