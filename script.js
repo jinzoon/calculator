@@ -79,8 +79,8 @@ if (display__number.textContent == "Can't divide by Zero"){ return;}
 
 
 function formatForDisplay(num) {
-    if (num.toString().length > 11) {
-        return num.toExponential(7)
+    if (num.toString().length > 15) {
+        return num.toExponential(8)
     }
     else {
         return num.toString();
@@ -160,7 +160,7 @@ function operate(operator, firstNum, secondNum){
     else if (operator == "-") {
         return subtract(firstNum,secondNum);
     }
-    else if (operator == "x") {
+    else if (operator == "X") {
         return multiply(firstNum,secondNum);
     }
     else if (operator == "÷"){
