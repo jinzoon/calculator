@@ -1,9 +1,27 @@
-.calculator__display {
-    height: 2rem;
+.display {
+    height: 2.5rem;
     width: 7rem;
     background-color: lightgray;
     border: 1px solid black;
-    padding: 0.25rem 0;
-    text-align: right
-    
+    padding: 0 .15rem;
+    display: flex;
+    flex-direction: column;    
+}
+
+.display__operator {
+    font-size: .75rem;
+    width: auto;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: right
+}
+
+.display__number {
+    font-size: 1.25rem;
+    width: auto;
+    height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: right
 }

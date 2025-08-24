@@ -6,8 +6,8 @@ let currentInput = "";
 
 let replaceCurrentDisplay = false;
 
-
-const calculator__display = document.querySelector(".calculator__display");
+const display__number = document.querySelector(".display__number");
+const display__operator = document.querySelector(".display__operator")
 const button__digit = document.querySelectorAll(".button__digit");
 const button__clear = document.querySelector(".button__clear");
 const button_operator =document.querySelectorAll(".button_operator");
@@ -17,7 +17,7 @@ const button__delete = document.querySelector(".button__delete");
 
 button__digit.forEach(button => {
     button.addEventListener("click", () => 
-        addToDisplay(button.textContent, calculator__display));});
+        addToDisplay(button.textContent, display__number));});
 
 button_operator.forEach(button => {
     button.addEventListener("click", () => 
@@ -29,24 +29,29 @@ button_operator.forEach(button => {
     button.addEventListener("click", () => 
         operator = button.textContent)});
 
+button_operator.forEach(button => {
+    button.addEventListener("click", () => {
+        if (firstNum !== undefined) {
+        display__operator.textContent = button.textContent}})});
+
 button__equal.addEventListener("click", () => equalPressed());
 
 button__posneg.addEventListener("click", () => {
-if (calculator__display.textContent == "Can't divide by Zero"){ return;} 
+if (display__number.textContent == "Can't divide by Zero"){ return;} 
     if (currentNum !== undefined) {
     currentNum = (currentNum*-1);
-    calculator__display.textContent = formatForDisplay(currentNum);}}
+    display__number.textContent = formatForDisplay(currentNum);}}
 );
 
 button__delete.addEventListener("click", () => {
-if (calculator__display.textContent == "Can't divide by Zero"){ return;}
+if (display__number.textContent == "Can't divide by Zero"){ return;}
 
     if (currentNum !== undefined) {
     if (currentInput.charAt(currentInput.length-1) == "."){
     }
        currentInput = currentInput.slice(0,-1);
        currentNum = Number(currentInput);
-       calculator__display.textContent = formatForDisplay(currentInput);
+       display__number.textContent = formatForDisplay(currentInput);
 if (currentInput.length == 0){
     currentNum == undefined;
     }       
@@ -54,7 +59,7 @@ if (currentInput.length == 0){
 );
 
 function equalPressed(){
-if (calculator__display.textContent == "Can't divide by Zero"){ return;}
+if (display__number.textContent == "Can't divide by Zero"){ return;}
 
     if (firstNum == undefined && currentNum == undefined){
         return;
@@ -63,7 +68,8 @@ if (calculator__display.textContent == "Can't divide by Zero"){ return;}
         secondNum = currentNum;
         let holdingNum = operate(operator,firstNum,secondNum);
         
-        calculator__display.textContent = formatForDisplay(holdingNum);}
+        display__number.textContent = formatForDisplay(holdingNum);}
+        display__operator.textContent = "";
         firstNum = undefined;
         replaceCurrentDisplay = true;
         secondNum = undefined;
@@ -83,7 +89,7 @@ function formatForDisplay(num) {
 }
 
 function addToDisplay(digit, display){
-if (calculator__display.textContent == "Can't divide by Zero"){ return;}
+if (display__number.textContent == "Can't divide by Zero"){ return;}
 
 if (replaceCurrentDisplay == false){ 
      if(digit == "." && currentInput.includes(".") == true){
@@ -109,12 +115,14 @@ if (replaceCurrentDisplay == false){
 
 
 function operatorPressed() {
-    if (calculator__display.textContent == "Can't divide by Zero"){ return;}
-
+    if (display__number.textContent == "Can't divide by Zero"){ return;}
+    
+    
     if (firstNum == undefined && secondNum == undefined ){
         firstNum = currentNum;
         replaceCurrentDisplay = true;
         currentNum = undefined;
+       
     }
     else if (firstNum !== undefined && currentNum == undefined){
         return;
@@ -124,12 +132,12 @@ function operatorPressed() {
         secondNum = currentNum;
         let holdingNum = operate(operator,firstNum,secondNum);
         firstNum = holdingNum;
-        calculator__display.textContent = formatForDisplay(firstNum);
+        display__number.textContent = formatForDisplay(firstNum);
         replaceCurrentDisplay = true;
         secondNum = undefined;
         currentNum = undefined;
     }
-    
+  
 }
 
 
@@ -138,8 +146,10 @@ function clearAll(){
     secondNum = undefined;
     operator = undefined;
     currentNum = undefined
-    calculator__display.textContent = "";
+    display__number.textContent = "";
     currentInput = "";
+    display__operator.textContent = "";
+    replaceCurrentDisplay = false;
 
 }
 
@@ -177,7 +187,7 @@ function multiply(num1,num2) {
 
 function divide(num1,num2) {
     if (num2 === 0){
-        calculator__display.textContent = "Can't divide by Zero";
+        display__number.textContent = "Can't divide by Zero";
         return }
     else {
        
