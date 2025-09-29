@@ -32,7 +32,11 @@ button_operator.forEach(button => {
 button_operator.forEach(button => {
     button.addEventListener("click", () => {
         if (firstNum !== undefined) {
-        display__operator.textContent = button.textContent}})});
+            if (button.textContent == "÷"){
+                display__operator.textContent = "/";
+            }
+            else {
+        display__operator.textContent = button.textContent}}})});
 
 button__equal.addEventListener("click", () => equalPressed());
 
