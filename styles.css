@@ -11,7 +11,8 @@ body {
 }
 
 .calculator {
-    border: 1px solid red;
+    border: 1px solid darkgray;
+    background-color: #3c4142;
     width: 40vh;
     height: 60vh;
     display: flex;
@@ -30,8 +31,6 @@ body {
     display: flex;
     flex-direction: column;    
 }
-
-
 
 .display__operator {
     font-size: .75rem;
@@ -53,7 +52,7 @@ body {
 .display__numberBG, .display__operatorBG{
     position: absolute;
     z-index: 0;
-    opacity: 25%;
+    opacity: 15%;
     right: 0
 }
 
@@ -71,4 +70,20 @@ body {
     height: 100%;
     display: flex;
     justify-content: flex-end;
+}
+
+
+.button {
+    height: 3.5rem;
+    gap: .125rem;
+    font-size: x-large;
+    
+}
+
+.button--quarterSize{
+    width: 3rem;
+}
+
+.button--thirdSize{
+    width: 4rem;
 }
